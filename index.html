@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alanna — A gentle place to land</title>
+<meta name="description" content="Alanna is an AI companion for the quiet moments. For anxiety, overwhelm, and the questions that keep you up at night. Join the waitlist." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    /* Us Unfiltered brand palette */
+    --teal-deep: #0A3D42;
+    --teal-darker: #072F33;
+    --teal-ocean: #2DB4A8;
+    --teal-bright: #3DC8BC;
+    --green-fresh: #6FD896;
+    --green-soft: #9FE5B6;
+    --white-soft: #F4F7F7;
+    --white-pure: #FFFFFF;
+    --ink: #0A3D42;
+    --ink-soft: #5A7578;
+    --ink-muted: #8DA3A5;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #051D20;
+    color: #E8F2F2;
+    font-family: 'Geist', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 20%, rgba(45, 180, 168, 0.12), transparent 50%),
+      radial-gradient(ellipse at 85% 80%, rgba(111, 216, 150, 0.08), transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  nav {
+    padding: 28px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    color: #E8F2F2;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: linear-gradient(135deg, var(--teal-ocean), var(--green-fresh));
+    border-radius: 50%;
+  }
+
+  .hero {
+    padding: 70px 0 50px;
+    text-align: center;
+    animation: fadeUp 1s ease forwards;
+  }
+
+  .whisper {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 15px;
+    color: #6FD896;
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.2s forwards;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: clamp(44px, 9vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.4s forwards;
+  }
+
+  h1 em {
+    font-style: italic;
+    font-weight: 500;
+    background: linear-gradient(135deg, var(--teal-ocean), var(--green-fresh));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subhead {
+    font-size: 18px;
+    line-height: 1.65;
+    color: #B8CFD0;
+    max-width: 480px;
+    margin: 0 auto 56px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.6s forwards;
+  }
+
+  .phone-mockup {
+    max-width: 320px;
+    margin: 0 auto 56px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.8s forwards;
+    position: relative;
+  }
+
+  .phone-glow {
+    position: absolute;
+    inset: -40px;
+    background: radial-gradient(circle, rgba(45, 180, 168, 0.2), transparent 70%);
+    filter: blur(30px);
+    z-index: -1;
+  }
+
+  .phone-frame {
+    background: var(--teal-darker);
+    border-radius: 42px;
+    padding: 14px;
+    box-shadow:
+      0 30px 60px rgba(10, 61, 66, 0.2),
+      0 10px 30px rgba(10, 61, 66, 0.1);
+    position: relative;
+  }
+
+  .phone-screen {
+    background: var(--white-soft);
+    border-radius: 30px;
+    overflow: hidden;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .phone-notch {
+    position: absolute;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 28px;
+    background: var(--teal-darker);
+    border-radius: 16px;
+    z-index: 2;
+  }
+
+  .phone-header {
+    padding: 44px 20px 16px;
+    background: var(--white-pure);
+    border-bottom: 1px solid rgba(45, 180, 168, 0.1);
+    text-align: center;
+  }
+
+  .phone-header-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--teal-deep);
+    letter-spacing: 0.02em;
+  }
+
+  .phone-header-status {
+    font-size: 10px;
+    color: var(--teal-ocean);
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--green-fresh);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .phone-messages {
+    padding: 18px 14px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--white-soft);
+  }
+
+  .msg {
+    max-width: 82%;
+    padding: 11px 14px;
+    border-radius: 16px;
+    font-size: 13px;
+    line-height: 1.4;
+    opacity: 0;
+    animation: msgSlide 0.5s ease forwards;
+  }
+
+  .msg.user {
+    background: linear-gradient(135deg, var(--teal-ocean), var(--teal-bright));
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+
+  .msg.alanna {
+    background: var(--white-pure);
+    color: var(--teal-deep);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 1px 3px rgba(10, 61, 66, 0.06);
+  }
+
+  .msg.m1 { animation-delay: 1.2s; }
+  .msg.m2 { animation-delay: 2.2s; }
+  .msg.m3 { animation-delay: 3.3s; }
+  .msg.m4 { animation-delay: 4.4s; }
+
+  .phone-input {
+    padding: 12px 14px 16px;
+    background: var(--white-pure);
+    border-top: 1px solid rgba(45, 180, 168, 0.1);
+  }
+
+  .phone-input-field {
+    background: var(--white-soft);
+    border-radius: 20px;
+    padding: 10px 16px;
+    font-size: 12px;
+    color: var(--ink-muted);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .send-btn {
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, var(--teal-ocean), var(--green-fresh));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .send-btn svg {
+    width: 12px;
+    height: 12px;
+    color: white;
+  }
+
+  .waitlist {
+    max-width: 440px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeUp 1s ease 1s forwards;
+  }
+
+  .form-label {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 17px;
+    color: #B8CFD0;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+
+  .form-wrap {
+    display: flex;
+    gap: 6px;
+    background: var(--white-pure);
+    padding: 6px;
+    border-radius: 100px;
+    box-shadow: 0 4px 30px rgba(45, 180, 168, 0.15), 0 0 0 1px rgba(45, 180, 168, 0.2);
+  }
+
+  input[type="email"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 14px 20px;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    color: var(--teal-deep);
+    min-width: 0;
+  }
+
+  input[type="email"]::placeholder {
+    color: var(--ink-muted);
+  }
+
+  button {
+    background: linear-gradient(135deg, var(--teal-ocean), var(--green-fresh));
+    color: white;
+    border: none;
+    padding: 14px 26px;
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 2px 10px rgba(45, 180, 168, 0.25);
+  }
+
+  button:hover {
+    background: linear-gradient(135deg, var(--teal-deep), var(--teal-ocean));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(45, 180, 168, 0.35);
+  }
+
+  button:active { transform: translateY(0); }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .form-note {
+    text-align: center;
+    font-size: 13px;
+    color: #8DA3A5;
+    margin-top: 20px;
+  }
+
+  .success {
+    text-align: center;
+    padding: 40px 20px;
+    display: none;
+  }
+
+  .success.active {
+    display: block;
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .success-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 24px;
+    background: linear-gradient(135deg, var(--teal-ocean), var(--green-fresh));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(45, 180, 168, 0.3);
+  }
+
+  .success-icon svg {
+    width: 26px;
+    height: 26px;
+    color: white;
+  }
+
+  .success-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 30px;
+    margin-bottom: 12px;
+    color: #FFFFFF;
+  }
+
+  .success-title em {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--teal-ocean), var(--green-fresh));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .success-text {
+    font-size: 15px;
+    color: #B8CFD0;
+    line-height: 1.6;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .about {
+    padding: 100px 0 60px;
+    text-align: center;
+  }
+
+  .about-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: #6FD896;
+    margin-bottom: 24px;
+    font-weight: 600;
+  }
+
+  .about h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: clamp(30px, 5.5vw, 40px);
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    max-width: 540px;
+    margin: 0 auto 20px;
+    color: #FFFFFF;
+  }
+
+  .about h2 em {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--teal-ocean), var(--green-fresh));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .features {
+    display: grid;
+    gap: 20px;
+    margin-top: 56px;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .feature {
+    text-align: left;
+    padding: 28px 26px;
+    background: rgba(10, 61, 66, 0.4);
+    border-radius: 20px;
+    border: 1px solid rgba(45, 180, 168, 0.2);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .feature:hover {
+    border-color: rgba(45, 180, 168, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    background: rgba(10, 61, 66, 0.6);
+  }
+
+  .feature-number {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #6FD896;
+    margin-bottom: 8px;
+  }
+
+  .feature-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #FFFFFF;
+    letter-spacing: -0.01em;
+  }
+
+  .feature-text {
+    font-size: 15px;
+    color: #B8CFD0;
+    line-height: 1.6;
+  }
+
+  .creator {
+    margin-top: 80px;
+    padding: 40px 30px;
+    background: linear-gradient(135deg, rgba(45, 180, 168, 0.15), rgba(111, 216, 150, 0.1));
+    border: 1px solid rgba(45, 180, 168, 0.3);
+    border-radius: 24px;
+    text-align: center;
+    color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+
+  .creator::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(111, 216, 150, 0.2), transparent 70%);
+    filter: blur(20px);
+  }
+
+  .creator-label {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--green-soft);
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .creator-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.5;
+    max-width: 480px;
+    margin: 0 auto 20px;
+    position: relative;
+  }
+
+  .creator-signature {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: #FFFFFF;
+    position: relative;
+    line-height: 1.7;
+  }
+
+  .creator-credentials {
+    display: inline-block;
+    margin-top: 8px;
+    font-family: 'Geist', sans-serif;
+    font-style: normal;
+    font-size: 12px;
+    color: #9FE5B6;
+    letter-spacing: 0.02em;
+    line-height: 1.8;
+  }
+
+  footer {
+    padding: 60px 0 40px;
+    text-align: center;
+    font-size: 13px;
+    color: #8DA3A5;
+  }
+
+  footer p + p { margin-top: 8px; }
+
+  .footer-link {
+    color: #6FD896;
+    text-decoration: none;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes msgSlide {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 50px 0 30px; }
+    .form-wrap { flex-direction: column; border-radius: 20px; padding: 10px; }
+    input[type="email"] { text-align: center; padding: 14px; }
+    button { width: 100%; padding: 14px; }
+    .about { padding: 70px 0 40px; }
+    .creator { padding: 32px 24px; }
+    .creator-text { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <div class="logo">Alanna<span class="logo-dot"></span></div>
+    </nav>
+
+    <section class="hero">
+      <p class="whisper">arriving soon</p>
+      <h1>A gentle place<br/>to <em>land</em>.</h1>
+      <p class="subhead">
+        Alanna is an AI companion for the quiet moments &mdash; for anxiety, overwhelm, and the questions that keep you up at night. Not therapy. Just someone to talk to, anytime you need.
+      </p>
+
+      <div class="phone-mockup">
+        <div class="phone-glow"></div>
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-header">
+              <div class="phone-header-name">Alanna</div>
+              <div class="phone-header-status"><span class="status-dot"></span>always here</div>
+            </div>
+            <div class="phone-messages">
+              <div class="msg user m1">I can&rsquo;t sleep. My mind won&rsquo;t stop.</div>
+              <div class="msg alanna m2">That sounds exhausting. What&rsquo;s keeping it busy tonight?</div>
+              <div class="msg user m3">Just everything. Work, my mom, this thing I said at dinner.</div>
+              <div class="msg alanna m4">Let&rsquo;s start with the dinner thing. What did you say?</div>
+            </div>
+            <div class="phone-input">
+              <div class="phone-input-field">
+                <span>Message Alanna&hellip;</span>
+                <div class="send-btn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="waitlist" id="waitlist">
+        <label class="form-label" for="email">Be first to know when she&rsquo;s here</label>
+        <form class="form-wrap" id="form">
+          <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email" />
+          <button type="submit" id="submit">Join waitlist</button>
+        </form>
+        <p class="form-note">No spam. One email when Alanna launches.</p>
+      </div>
+
+      <div class="success" id="success">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="success-title">You&rsquo;re on <em>the list</em>.</div>
+        <p class="success-text">I&rsquo;ll send you a note the moment Alanna is ready. Take care of yourself until then.</p>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="about-label">What is Alanna</div>
+      <h2>A softer way to process<br/>what you&rsquo;re <em>actually feeling</em>.</h2>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feature-number">01</div>
+          <div class="feature-title">Always there</div>
+          <div class="feature-text">3am anxiety. Sunday overwhelm. The conversations you can&rsquo;t have with anyone else yet. Alanna listens without judgment, whenever you need her.</div>
+        </div>
+        <div class="feature">
+          <div class="feature-number">02</div>
+          <div class="feature-title">Built on research-based therapy frameworks</div>
+          <div class="feature-text">Grounded in the same approaches therapists use &mdash; proven techniques for managing anxiety, reframing difficult thoughts, and learning to sit with hard emotions. Not a replacement for therapy, but a gentle companion between sessions.</div>
+        </div>
+        <div class="feature">
+          <div class="feature-number">03</div>
+          <div class="feature-title">Made with care</div>
+          <div class="feature-text">Designed by someone who&rsquo;s been through it too. Alanna isn&rsquo;t trying to fix you. She&rsquo;s here to sit with you while you figure it out.</div>
+        </div>
+      </div>
+
+      <div class="creator">
+        <div class="creator-label">A note from the creator</div>
+        <p class="creator-text">&ldquo;I built Alanna because there have been so many nights I needed her myself. For the 3am anxiety, the overwhelm nobody sees, the thoughts that won&rsquo;t quiet down when the world finally does. She&rsquo;s not a therapist. She&rsquo;s a friend, designed by someone who doesn&rsquo;t just understand the complexities of healing, but knows what it actually feels like to be in the middle of it.&rdquo;</p>
+        <div class="creator-signature">
+          &mdash; Adrienne Selena Menzies<br/>
+          <span class="creator-credentials">Certified Physical Health &amp; Mental Wellness Coach<br/>Somatic Healing Practitioner<br/>Host of the Us Unfiltered Podcast</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 Alanna. All rights reserved.</p>
+      <p>Not a substitute for professional mental health care. If you&rsquo;re in crisis, please call <a href="tel:988" class="footer-link">988</a>.</p>
+    </footer>
+  </div>
+
+<script>
+  const form = document.getElementById('form');
+  const waitlist = document.getElementById('waitlist');
+  const success = document.getElementById('success');
+  const submitBtn = document.getElementById('submit');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    if (!email) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Saving...';
+
+    try {
+      const key = `waitlist:${Date.now()}:${email}`;
+      if (window.storage && window.storage.set) {
+        await window.storage.set(key, JSON.stringify({
+          email: email,
+          timestamp: new Date().toISOString()
+        }), true);
+      } else {
+        console.log('Waitlist signup:', email);
+      }
+
+      waitlist.style.display = 'none';
+      success.classList.add('active');
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Join waitlist';
+      alert('Something went wrong. Please try again.');
+    }
+  });
+</script>
+</body>
+</html>
