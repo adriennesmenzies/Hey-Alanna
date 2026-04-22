@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
 <style>
   :root {
     /* Us Unfiltered brand palette */
@@ -570,6 +571,26 @@
     text-decoration: none;
   }
 
+  .beehiiv-wrapper {
+    max-width: 480px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  .beehiiv-embed {
+    width: 100% !important;
+    height: 80px;
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border-radius: 20px !important;
+    max-width: 100% !important;
+    display: block;
+    margin: 0 auto;
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
@@ -643,17 +664,6 @@
       </div>
     </section>
 
-      <div class="success" id="success">
-        <div class="success-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-        </div>
-        <div class="success-title">You&rsquo;re on <em>the list</em>.</div>
-        <p class="success-text">I&rsquo;ll send you a note the moment Alanna is ready. Take care of yourself until then.</p>
-      </div>
-    </section>
-
     <section class="about">
       <div class="about-label">What is Alanna</div>
       <h2>A softer way to process<br/>what you&rsquo;re <em>actually feeling</em>.</h2>
@@ -693,38 +703,7 @@
   </div>
 
 <script>
-  const form = document.getElementById('form');
-  const waitlist = document.getElementById('waitlist');
-  const success = document.getElementById('success');
-  const submitBtn = document.getElementById('submit');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('email').value.trim();
-    if (!email) return;
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Saving...';
-
-    try {
-      const key = `waitlist:${Date.now()}:${email}`;
-      if (window.storage && window.storage.set) {
-        await window.storage.set(key, JSON.stringify({
-          email: email,
-          timestamp: new Date().toISOString()
-        }), true);
-      } else {
-        console.log('Waitlist signup:', email);
-      }
-
-      waitlist.style.display = 'none';
-      success.classList.add('active');
-    } catch (err) {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Join waitlist';
-      alert('Something went wrong. Please try again.');
-    }
-  });
+  // Beehiiv handles the form signups via the embed script loaded in the head
 </script>
 </body>
 </html>
